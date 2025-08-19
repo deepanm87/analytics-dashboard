@@ -1,4 +1,4 @@
-import Header from "@/components/header"
+import Header from "@/components/header/header"
 import type { Metadata } from "next"
 import { Space_Grotesk } from "next/font/google"
 import "./globals.css"
