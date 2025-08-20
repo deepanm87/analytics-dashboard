@@ -10,6 +10,8 @@ export async function AnalyticsInfo() {
         return <></>
     }
 
+    const { domain, createdAt, updatedAt } = analyticsInfo
+
     const infoItems: InfoItem[] = [
         { id: "domain", label: "Domain", value: domain },
         { id: "createdAt", label: "Created At", value: createdAt ? new Date(createdAt).toLocaleDateString() : "" },
