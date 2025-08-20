@@ -43,6 +43,16 @@ export default async function Dashboard() {
         }
     })
 
+    const chartData: ChartDataPoint[] = currentAnalytics.map(
+        (data: AnalyticsData) => ({
+            date: new Date(data.date).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric"
+            }),
+            visitors: data.visitors
+        })
+    )
+
     const stats: StatItem[] = [
         {
             label: "Visitors",
