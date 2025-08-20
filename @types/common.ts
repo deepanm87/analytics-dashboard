@@ -8,6 +8,10 @@ export interface ChartData {
     value: number
 }
 
+export interface VisitorChartProps {
+    data: ChartData[]
+}
+
 export type PageProps = {
     params: Promise<{
         insight: string

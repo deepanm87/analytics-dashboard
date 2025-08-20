@@ -1,3 +1,4 @@
+import Dashboard from "@/components/dashboard"
 import Header from "@/components/header/header"
 import type { Metadata } from "next"
 import { Space_Grotesk } from "next/font/google"
@@ -5,6 +6,7 @@ import "./globals.css"
 import { Suspense } from "react"
 import { AnalyticsInfo } from "@/components/analytics-info/analytics-info"
 import { AnalyticsInfoSkeleton } from "@/components/analytics-info/skeleton"
+import { DashboardSkeleton } from "@/components/dashboard/skeleton"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -34,6 +36,10 @@ export default function RootLayout({
               Analytics Info
             </h1>
             <AnalyticsInfo />
+
+            <Suspense fallback={<DashboardSkeleton />}>
+              <Dashboard />
+            </Suspense>
             
           </div>
         </main>

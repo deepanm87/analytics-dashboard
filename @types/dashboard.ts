@@ -11,6 +11,10 @@ export interface StatItem {
     color: string
 }
 
+export interface StatsProps extends StatItem {
+    sub?: string
+}
+
 export interface AnalyticsData extends PrismaAnalytics {
     date: Date
     visitors: number
@@ -18,3 +22,4 @@ export interface AnalyticsData extends PrismaAnalytics {
     bounceRate: number
     sessionTime: number
 }
+
