@@ -15,7 +15,7 @@ export default function Search() {
 
     const defaultValue = searchParams.get("q") || ""
 
-    const [isPending, setTransition] = useTransition()
+    const [isPending, startTransition] = useTransition()
 
     return (
         <Form
