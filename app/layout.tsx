@@ -12,6 +12,8 @@ import { AnalyticsInfoSkeleton } from "@/components/analytics-info/skeleton"
 import { InsightsSkeleton } from "@/components/insights/skeleton"
 import { DashboardSkeleton } from "@/components/dashboard/skeleton"
 import  SearchSkeleton from "@/components/search/skeleton"
+import { VisitorFilterSkeleton } from "@/components/visitor-filler/skeleton"
+import VisitorFilter from "@/components/visitor-filler"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -57,10 +59,14 @@ export default function RootLayout({
             <Suspense fallback={<SearchSkeleton />}>
               <Search />
             </Suspense>
+
+            <Suspense fallback={<VisitorFilterSkeleton />}>
+              <VisitorFilter visitorFiltersPromise={visitorFiltersPromise} />
+            </Suspense>
             
+            {children}
           </div>
         </main>
-        {children}
       </body>
     </html>
   )
