@@ -1,12 +1,17 @@
 import Dashboard from "@/components/dashboard"
 import Header from "@/components/header/header"
+import Insights from "@/components/insights"
+import Search from "@/components/search"
+import { getAnalytics, getJourneyInsights, getVisitorFilters } from "@/lib/analytics"
 import type { Metadata } from "next"
 import { Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { Suspense } from "react"
 import { AnalyticsInfo } from "@/components/analytics-info/analytics-info"
 import { AnalyticsInfoSkeleton } from "@/components/analytics-info/skeleton"
+import { InsightsSkeleton } from "@/components/insights/skeleton"
 import { DashboardSkeleton } from "@/components/dashboard/skeleton"
+import  SearchSkeleton from "@/components/search/skeleton"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -23,6 +28,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const journeysPromise = getJourneyInsights()
+  const visitorFiltersPromise = getVisitorFilters()
+
   return (
     <html lang="en">
       <body
@@ -39,6 +48,14 @@ export default function RootLayout({
 
             <Suspense fallback={<DashboardSkeleton />}>
               <Dashboard />
+            </Suspense>
+
+            <Suspense fallback={<InsightsSkeleton />}>
+              <Insights journeysPromise={journeysPromise} />
+            </Suspense>
+
+            <Suspense fallback={<SearchSkeleton />}>
+              <Search />
             </Suspense>
             
           </div>

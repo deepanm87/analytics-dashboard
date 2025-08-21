@@ -1,6 +1,6 @@
 import { AnalyticsInfoResponse, JourneyInsightsResponse } from "@/@types/analytics"
 import { DateRange} from "@/@types/common"
-import type { Analytics as PrismaAnalytics, VisitorFilter } from '@/prisma/app/generated/prisma'
+import type { Analytics as PrismaAnalytics, VisitorFilter } from '@/prisma/app/generated/prisma/client'
 import { slow } from '@/utils/common'
 import { prisma } from "./prisma"
 
@@ -18,6 +18,21 @@ export const getJourneyInsights =
     async (): Promise<JourneyInsightsResponse> => {
         await slow(3000)
         const journeys = await prisma.visitorJourney.findMany({
+            orderBy: { completedAt: "desc" },
+            take: 10
+        })
+
+        return journeys
+    }
+
+    export const getJourneyInsightsByDate = async (
+        dateFilter: DateRange
+    ): Promise<JourneyInsightsResponse> => {
+        await slow(2000)
+        const journeys = await prisma.visitorJourney.findMany({
+            where: {
+                completedAt: dateFilter,
+            },
             orderBy: { completedAt: "desc" },
             take: 10
         })

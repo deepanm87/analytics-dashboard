@@ -4,13 +4,13 @@ import { getJourneyInsights } from '@/lib/analytics'
 import { cn } from "@/lib/utils"
 import { VisitorJourney } from "@/prisma/app/generated/prisma/client"
 import { commonStyles } from "@/styles/common"
-import { getTotalCount, mapitems } from "@/utils/insight-utils"
+import { getTotalCount, mapItems } from "@/utils/insight-utils"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { use } from "react"
 
 export default function Insights({
-    journeyPromise
+    journeysPromise
 }: {
     journeysPromise: Promise<VisitorJourney[]>
 }) {
